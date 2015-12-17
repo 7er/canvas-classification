@@ -23,9 +23,9 @@ if (Meteor.isClient) {
       ctx.fillRect(0,0,200,200);
       ctx.fillStyle = "#ff0000";
       ctx.fillRect(0, 0, 100, 50);
-      var jpegDataUrl = canvas.toDataURL("image/png");
-      //Stuff.update({_id: "drawing"}, {dataUrl:jpegDataUrl});
-      Meteor.call("updateDrawing", jpegDataUrl);
+      var pngDataUrl = canvas.toDataURL("image/png");
+      //Stuff.update({_id: "drawing"}, {dataUrl:pngDataUrl});
+      Meteor.call("updateDrawing", pngDataUrl);
       // increment the counter when button is clicked
       Session.set('counter', Session.get('counter') + 1);
     }
@@ -41,12 +41,11 @@ if (Meteor.isServer) {
   });
 
   Meteor.methods({
-    updateDrawing: function(jpegDataUrl) {
-      console.log(jpegDataUrl);
+    updateDrawing: function(pngDataUrl) {
       spawn = Npm.require('child_process').spawn;
 
-      command = spawn('cat', []);
-      command.stdin.write("asdfsjfasdkljf");
+      command = spawn('/home/syver/coding/canvas/classifier/pipeline.sh', []);
+      command.stdin.write(pngDataUrl.slice(22));
       command.stdin.end();
       var boundFunction = Meteor.bindEnvironment(function (data) {
         console.log('stdout: ' + data);
