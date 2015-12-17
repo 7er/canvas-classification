@@ -22,7 +22,9 @@ if (Meteor.isClient) {
       ctx.fillStyle = "#ffffff";
       ctx.fillRect(0,0,200,200);
       ctx.fillStyle = "#ff0000";
-      ctx.fillRect(0, 0, 100, 50);
+      ctx.fillRect(110, 30, 20, 150);
+      ctx.fillRect(10, 100, 120, 30);
+      ctx.fillRect(10, 30, 20, 100);
       var pngDataUrl = canvas.toDataURL("image/png");
       //Stuff.update({_id: "drawing"}, {dataUrl:pngDataUrl});
       Meteor.call("updateDrawing", pngDataUrl);

@@ -1,0 +1,39 @@
+* interaction
+** Basic feature
+  - Svend Børge skriver tallet 3 med musen på canvasen i websiden.
+  - Når han er ferdig trykker han på <Ok> knappen
+  - Som svar får han sannsynnligheter for tallene 0-9
+    3 - 73.75%
+    8 - 23.61%
+    2 - .....%
+    ...
+
+  - Svend Børge er fornøyd og ønsker å prøve seg med et annet tall
+  - Han trykker <Clear> knappen. Både bildet og resultatene slettes
+  - Nå kan han gjenta
+
+*** tech sketch
+**** find canvas drawing plugin for javascript
+**** flow
+     - Every time canvas changes put svg image into storage
+     - Server side converts svg to jpg and resize it to 20x20 grayscale
+     - Server shells out to octave and receives the classification data on stdin
+     - Server stores classifcation data in mongodb
+     - Ui automatically renders all updates
+     - Clear button clear mongodb data, and UI is updated
+**** server side
+***** DONE convert svg image 
+***** DONE shell out to octave program and get data back
+
+
+** Interactive classifcation as the user draws the number(s)
+
+** Eraser for the canvas
+
+** Numbers with multiple digits
+
+** Training the number classifier
+   Svend Børge should be able to manually classify the number he wrote
+   and submit it. The classifier will then train on that the image he drew.
+
+
